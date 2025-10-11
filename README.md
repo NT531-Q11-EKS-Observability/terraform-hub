@@ -7,7 +7,6 @@ The infrastructure consists of:
 - **VPC** with private and public subnets distributed across multiple Availability Zones.
 - **EKS Cluster** for running containerized workloads.
 - **ALB Controller** for ingress traffic management.
-- **Route53 & ACM** for domain management and TLS certificates.
 - **Security Groups** following the principle of least privilege.
 - **IRSA (IAM Roles for Service Accounts)** to securely bind observability tools with AWS services.
 
@@ -47,13 +46,6 @@ This setup provides a **modular, secure, and production-ready environment** for 
 - **Subnets**: Public and private subnets across 2–3 Availability Zones.
 - **Internet Gateway (IGW)**: Enables outbound Internet access for public resources.
 - **NAT Gateway**: Allows private nodes to pull images and updates securely.
-
----
-
-### Route53 & ACM
-- **DNS**: Managed via Route53.
-- **TLS Certificates**: Automated provisioning using AWS Certificate Manager (ACM).
-- **Ingress**: ALB Ingress Controller integrates with Route53 for domain-based routing.
 
 ---
 
