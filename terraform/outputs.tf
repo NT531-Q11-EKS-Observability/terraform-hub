@@ -38,3 +38,13 @@ output "security_groups" {
     db_sg_id             = module.security_groups.db_sg_id
   }
 }
+
+output "acm_certificate_arn" {
+  description = "ARN of the ACM certificate created by the module"
+  value       = module.acm.acm_certificate_arn
+}
+
+output "acm_domain_name" {
+  description = "Primary domain name of the ACM certificate"
+  value       = module.acm.acm_domain_name
+}

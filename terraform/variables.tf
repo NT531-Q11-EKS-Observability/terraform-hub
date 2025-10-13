@@ -1,3 +1,4 @@
+# Root variables.tf — Biến dùng chung
 variable "project_name" {
   description = "A short name used for tagging and resource naming."
   type        = string
@@ -29,11 +30,10 @@ variable "public_subnet_cidrs" {
   default     = ["10.0.1.0/24", "10.0.2.0/24"]
 }
 
-# Private app subnets (EKS nodes)
+# Private subnets
 variable "private_subnet_cidrs" {
-  type = list(string)
+  type        = list(string)
 }
-
 
 variable "create_second_nat" {
   description = "Whether to create one NAT per AZ (true) or a single NAT in the first AZ (false)"
@@ -41,7 +41,7 @@ variable "create_second_nat" {
   default     = false
 }
 
-# EKS variables
+# EKS cluster settings
 variable "eks_cluster_version" {
   description = "EKS Kubernetes version"
   type        = string
@@ -70,26 +70,12 @@ variable "node_max_size" {
 }
 
 variable "enable_karpenter" {
-  description = "If true, add IAM permissions that are friendly with Karpenter. (Optional, not installing Karpenter here)"
+  description = "If true, add IAM permissions compatible with Karpenter."
   type        = bool
   default     = false
 }
 
-
-variable "domain_name" {
-  description = "Root domain (e.g., example.com). Required if create_hosted_zone = true or if using ACM."
-  type        = string
-  default     = ""
-}
-
-variable "subject_alternative_names" {
-  description = "Subject alternative names for ACM cert"
-  type        = list(string)
-  default     = []
-}
-
-
-# --- IRSA S3 buckets (optional) ---
+# Observability / IRSA
 variable "loki_s3_bucket" {
   description = "S3 bucket name for Loki (optional)"
   type        = string
@@ -111,4 +97,29 @@ variable "observability_namespace" {
 variable "cluster_name" {
   description = "EKS cluster name"
   type        = string
+}
+
+# ACM Certificate 
+variable "domain_name" {
+  description = "Root domain (e.g., example.com). Required if using ACM."
+  type        = string
+  default     = "tienphatng237.it.com"
+}
+
+variable "subject_alternative_names" {
+  description = "Subject alternative names for ACM cert"
+  type        = list(string)
+  default     = ["*.tienphatng237.it.com"]
+}
+
+variable "validation_method" {
+  description = "ACM validation method: DNS or EMAIL"
+  type        = string
+  default     = "DNS"
+}
+
+variable "environment" {
+  description = "Deployment environment (dev/staging/prod)"
+  type        = string
+  default     = "prod"
 }

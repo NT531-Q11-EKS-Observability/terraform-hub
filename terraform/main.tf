@@ -52,3 +52,13 @@ module "alb_controller" {
   oidc_provider_arn = module.eks.oidc_provider_arn
   namespace         = "kube-system"
 }
+
+# ACM Certificate 
+module "acm" {
+  source = "./modules/acm"
+
+  domain_name               = var.domain_name
+  subject_alternative_names = var.subject_alternative_names
+  validation_method         = var.validation_method
+  environment               = var.environment
+}
