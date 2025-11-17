@@ -51,6 +51,9 @@ module "alb_controller" {
   vpc_id            = module.network.vpc_id
   oidc_provider_arn = module.eks.oidc_provider_arn
   namespace         = "kube-system"
+
+  eks_cluster_dependency = [module.eks]
+
 }
 
 # ACM Certificate 

@@ -100,6 +100,7 @@ resource "helm_release" "alb" {
 
   depends_on = [
     kubernetes_service_account.sa,
-    aws_iam_role_policy_attachment.alb_attach
+    aws_iam_role_policy_attachment.alb_attach,
+    var.eks_cluster_dependency
   ]
 }

@@ -28,3 +28,9 @@ variable "namespace" {
   default     = "kube-system"
   description = "Namespace for AWS Load Balancer Controller"
 }
+
+variable "eks_cluster_dependency" {
+  type        = list(any)
+  description = "Force dependency on EKS cluster so ALB Controller Helm does not destroy after EKS"
+  default     = []
+}
