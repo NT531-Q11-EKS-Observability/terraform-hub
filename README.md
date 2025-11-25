@@ -1,4 +1,4 @@
-# Terraform AWS EKS Observability Infrastructure
+# Terraform AWS EKS Multi-AZ Infrastructure
 
 ## 1. Overview
 This project provisions a **highly available Amazon EKS cluster** using **Terraform**, designed as a foundation for deploying **microservices** and an **observability stack**.
